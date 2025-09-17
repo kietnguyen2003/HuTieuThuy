@@ -15,8 +15,8 @@ export function Header() {
 
   const getActivePage = () => {
     if (pathname === "/") return "Trang chủ"
-    if (pathname === "/san-pham") return "Sản phẩm"
-    if (pathname === "/lien-he") return "Liên hệ"
+    if (pathname.startsWith("/san-pham")) return "Sản phẩm"
+    if (pathname.startsWith("/lien-he")) return "Liên hệ"
     return "Trang chủ"
   }
 

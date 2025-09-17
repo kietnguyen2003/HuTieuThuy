@@ -479,7 +479,7 @@ export default async function ChiTietSanPhamPage({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="px-8 py-3 font-open-sans bg-emerald-600 hover:bg-emerald-700">
-                  ĐẶT HÀNG SỈ
+                  ĐẶT HÀNG NGAY
                 </Button>
                 <Button
                   variant="outline"

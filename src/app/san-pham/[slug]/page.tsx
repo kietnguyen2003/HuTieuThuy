@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { FadeInImage } from "@/components/fade-in-image";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import Head from "next/head";
 import { supabase } from "@/lib/supabase";
+import { fetchProductsWithImages } from "@/lib/getProducts";
 import {
   Carousel,
   CarouselContent,
@@ -55,6 +57,9 @@ export default async function ChiTietSanPhamPage({
 }) {
   // Truy vấn sản phẩm từ bảng products dựa trên id
   const { slug } = await params;
+
+  // Fetch all products for footer
+  const allProducts = await fetchProductsWithImages();
   const { data: productData, error: productError } = await supabase
     .from("products")
     .select(`
@@ -127,13 +132,6 @@ export default async function ChiTietSanPhamPage({
     certifications: ["Chứng nhận HACCP", "Chứng nhận OCOP 3 sao", "Chứng nhận VSATTP"], // Giả lập
   };
 
-  const retailers = [
-    { name: "Bách hóa XANH", logo: "/placeholder.svg?height=60&width=120&text=Bách+hóa+XANH" },
-    { name: "Co.opmart", logo: "/placeholder.svg?height=60&width=120&text=Co.opmart" },
-    { name: "Co.opmart", logo: "/placeholder.svg?height=60&width=120&text=Co.opmart+2" },
-    { name: "Siêu thị", logo: "/placeholder.svg?height=60&width=120&text=Siêu+thị" },
-    { name: "WinMart", logo: "/placeholder.svg?height=60&width=120&text=WinMart" },
-  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -405,35 +403,6 @@ export default async function ChiTietSanPhamPage({
         </div>
       </section>
 
-      {/* Where to Buy Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 font-montserrat">
-              Sản phẩm được phân phối ở đâu?
-            </h2>
-            <p className="text-gray-600 font-merriweather">
-              Sản phẩm của Mẹ Sin có mặt ở hầu hết các hệ thống siêu thị, cửa hàng tiện
-              lợi và các cửa hàng bán lẻ trên toàn quốc.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-12">
-            {retailers.map((retailer, index) => (
-              <Card key={index} className="p-4 hover:shadow-lg transition-shadow">
-                <CardContent className="p-0 flex items-center justify-center h-16">
-                  <FadeInImage
-                    src={retailer.logo}
-                    alt={retailer.name}
-                    fill={true}
-                    className="object-contain"
-                  />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section className="py-20 bg-gradient-to-br from-emerald-50 to-amber-50">
@@ -525,106 +494,7 @@ export default async function ChiTietSanPhamPage({
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold">ST</span>
-                </div>
-                <span className="font-bold text-xl">Mẹ Sin</span>
-              </div>
-              <div className="space-y-2 text-sm text-gray-400 font-merriweather">
-                <p className="font-semibold text-white">
-                  Cơ sở sản xuất bún - hủ tiếu Mẹ Sin
-                </p>
-                <p>
-                  Địa chỉ: Ấp Bình Hòa, xã Long Bình Điền, huyện Chợ Gạo, tỉnh Tiền
-                  Giang, Việt Nam
-                </p>
-                <p>Điện thoại: 0815 771 771 - 0911 288 338</p>
-                <p>Email: sauthanh.info@gmail.com</p>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 font-montserrat">Menu chính</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Trang chủ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Hoạt động
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Liên hệ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Chính sách bán hàng
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 font-montserrat">Sản phẩm</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Bún tươi
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Hủ tiếu tươi
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Bánh tráng
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Bún khô cuộn lá
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 font-montserrat">Kết nối với chúng tôi</h4>
-              <div className="flex space-x-4 mb-4">
-                <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">f</span>
-                </div>
-                <div className="w-8 h-8 bg-blue-400 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">t</span>
-                </div>
-                <div className="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">y</span>
-                </div>
-              </div>
-              <div className="text-sm text-gray-400 font-merriweather">
-                <p>Bản quyền nội dung thuộc về Mẹ Sin</p>
-                <p>Bản quyền hình ảnh thuộc về các tác giả</p>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400 font-merriweather">
-            <p>Bản quyền © Hủ tiếu Mẹ Sin © 2023</p>
-            <p>
-              Bản quyền nội dung thuộc về Mẹ Sin và các cộng tác viên - Cấm sao chép
-              dưới mọi hình thức khi chưa có sự đồng ý của tác giả
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer products={allProducts.products} />
     </div>
   );
 }

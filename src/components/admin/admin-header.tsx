@@ -30,7 +30,6 @@ export function AdminHeader() {
     { name: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
     { name: "Sản phẩm", href: "/admin/products", icon: <Package className="w-5 h-5" /> },
     { name: "Đơn hàng", href: "/admin/orders", icon: <FileText className="w-5 h-5" /> },
-    { name: "Khách hàng", href: "/admin/customers", icon: <Users className="w-5 h-5" /> },
   ]
 
   return (

@@ -102,6 +102,7 @@ export async function fetchProductsWithImages() {
     const productsWithImages = products.map((product) => {
       const images = imagesWithUrls.filter((img) => img.product_id === product.id) || [];
       const primaryImage = images.find((img) => img.is_primary) || images[0];
+
       return {
         ...product,
         image: primaryImage?.publicUrl || `/placeholder.svg?height=300&width=300`,

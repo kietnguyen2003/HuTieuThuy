@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Star, Shield, Truck, Heart, Clock, Users, Utensils } from "lucide-react"
 import { FadeInImage } from "@/components/fade-in-image"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { fetchXuongImage } from "@/lib/getXuong"
 import { fetchProductsWithImages } from "@/lib/getProducts"
@@ -301,79 +302,7 @@ export default async function Component() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">ST</span>
-                </div>
-                <span className="font-bold text-xl">Mẹ Sin</span>
-              </div>
-              <p className="text-gray-400 text-sm font-merriweather">
-                Mang đến hương vị truyền thống Việt Nam đến mọi gia đình
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 font-montserrat">Liên kết nhanh</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Trang chủ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Sản phẩm
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Liên hệ
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 font-montserrat">Sản phẩm</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Bún thịt
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Hủ tiếu
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Bún bò Huế
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white font-open-sans">
-                    Bánh canh
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4 font-montserrat">Liên hệ</h4>
-              <ul className="space-y-2 text-sm text-gray-400 font-merriweather">
-                <li>Địa chỉ: Ấp Bình Hòa, xã Long Bình Điền, huyện Chợ Gạo, tỉnh Tiền Giang, Việt Nam</li>
-                <li>Điện thoại: 0815 771 771 - 0911 288 338</li>
-                <li>Email: info@sauthanh.com</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400 font-merriweather">
-            <p>&copy; 2024 Mẹ Sin. Tất cả quyền được bảo lưu.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer products={products.products} />
     </div>
   )
 }
