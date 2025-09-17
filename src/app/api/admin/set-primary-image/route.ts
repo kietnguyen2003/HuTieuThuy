@@ -52,6 +52,28 @@ export async function PUT(request: NextRequest) {
       )
     }
 
+    // Trigger revalidation of product pages
+    try {
+      const revalidateResponse = await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/revalidate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          path: '/san-pham',
+          tag: 'products',
+          secret: process.env.REVALIDATE_SECRET || 'default-secret'
+        })
+      })
+
+      if (revalidateResponse.ok) {
+        console.log('Successfully triggered revalidation')
+      }
+    } catch (revalidateError) {
+      console.error('Failed to trigger revalidation:', revalidateError)
+      // Continue execution even if revalidation fails
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Primary image set successfully'
